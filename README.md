@@ -44,7 +44,7 @@ Aplikasi SimPin adalah sistem backend Java untuk manajemen simpan pinjam berbasi
 
 
 
-database :
+Sebagian Sql yang masih ada :
 
 CREATE TABLE IF NOT EXISTS members (
     id_anggota INT AUTO_INCREMENT PRIMARY KEY,     -- ID Anggota (Auto Increment)
