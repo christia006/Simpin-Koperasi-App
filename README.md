@@ -1,77 +1,50 @@
-# Aplikasi SimPin (Sistem Informasi Simpan Pinjam) - Backend Java
-Aplikasi SimPin adalah sistem backend Java untuk manajemen simpan pinjam berbasis desktop. Dibangun menggunakan Java GUI (Kemungkinan menggunakan Swing atau JavaFX) dan terhubung ke database MariaDB. Proyek ini dirancang sebagai solusi manajemen keuangan koperasi kecil atau lembaga simpan pinjam dengan fitur-fitur CRUD dan user-friendly UI.
+# 💼 Aplikasi SimPin - Backend Java (Desktop Simpan Pinjam)
 
-🚀 Fitur Utama
-- 🔐 **Login & Autentikasi**: Sistem login pengguna.
-- 👥 **Manajemen Anggota**:  Login ,Night Mode, Change languange ,Tambah,lihat, ubah, hapus data anggota simpan pinjam,dan Menampilkan laporan data simpanan.
-- 💰 **Transaksi Simpanan dan Pinjaman**: Catat transaksi simpanan dan pinjaman per anggota.
-- 📦 **Modular Struktur**: Menggunakan pemisahan `entity`, `repository`, `model`, dan `view`.
-- 🧰 **Utilitas DB**: Koneksi database menggunakan MariaDB Driver.
-- 📋 **Manajemen ToDo**: Contoh fitur CRUD yang menunjukkan struktur REST-like modular.
-- 📁 **Resource Management**: Aset grafis dikelola terstruktur (`assets/`).
-  
-- 🧱 Teknologi yang Digunakan
-- Bahasa Pemrograman: Java
-- Database: MariaDB
-- Build Tool: Ant (`build.xml`)
-  
-- GUI Library: Swing (berdasarkan file `.form` dan `.class`)
-  🏗️ Struktur Direktori
-├── entity/             # Kelas entitas data seperti `Todo`
-├── repository/         # Interface dan implementasi repository
-├── model/              # Logika bisnis (seperti TodoModel)
-├── view/               # Komponen tampilan
-├── component/          # Panel dan UI tambahan
-├── util/               # Utility seperti koneksi DB dan helper
-├── assets/             # Ikon dan gambar untuk UI
-├── lib/                # Driver MariaDB
-└── build.xml           # File build Ant
+**SimPin** adalah aplikasi backend berbasis Java untuk manajemen simpan pinjam koperasi. Dibuat menggunakan **Java 23** dan dikembangkan di **NetBeans**, aplikasi ini dirancang untuk memberikan solusi manajemen keuangan koperasi kecil dengan fitur login, transaksi pinjam-simpan, night mode, dan multi-language support.
 
-🛠️ Cara Menjalankan
-1. Clone repositori:
-   git clone https://github.com/username/aplikasi-simpin-backend.git
+---
 
-2. Buka di NetBeans / IntelliJ IDEA / VSCode (dengan plugin Java)
+## 🚀 Fitur Utama
 
-3. Pastikan database MariaDB aktif dan konfigurasi koneksi benar di `DBUtil.java`
+- 🔐 **Login & Autentikasi** pengguna koperasi
+- 👥 **Manajemen Anggota**: Tambah, lihat, ubah, dan hapus anggota
+- 💸 **Transaksi Simpanan & Pinjaman** per anggota
+- 🌙 **Night Mode** dan 🔁 **Change Language** (multi-bahasa)
+- 📋 **Laporan Simpanan**: Menampilkan laporan data tabungan
+- 📁 **Struktur Modular**: Entity, Repository, Model, View, Component
+- 🛠️ **DB Utility**: Koneksi ke MariaDB melalui helper `DBUtil`
+- 🎨 **UI Desktop (Java Swing)** dengan ikon dan resource terkelola
 
-4. Compile dan Jalankan via IDE atau Ant:
-   ant run
+---
 
-   - Pastikan MariaDB telah diinstal.
-- Import struktur database sesuai kebutuhan (belum tersedia di repo ini).
-- Periksa dan ubah file `DBUtil.java` untuk menyesuaikan kredensial database.
+## 🧱 Teknologi yang Digunakan
 
+| Teknologi        | Deskripsi                                    |
+|------------------|----------------------------------------------|
+| **Java 23**       | Bahasa utama untuk pengembangan aplikasi     |
+| **Swing GUI**     | Antarmuka pengguna berbasis desktop (form UI)|
+| **MariaDB**       | Basis data relasional                       |
+| **Ant (build.xml)**| Alat build untuk compile dan run project   |
+| **NetBeans IDE**  | Lingkungan pengembangan utama               |
 
+---
 
-Sebagian Sql yang masih ada :
+## 📸 Screenshot Aplikasi
 
-CREATE TABLE IF NOT EXISTS members (
-    id_anggota INT AUTO_INCREMENT PRIMARY KEY,     -- ID Anggota (Auto Increment)
-    nama VARCHAR(100) NOT NULL,                    -- Nama Anggota
-    jenis_kelamin ENUM('Laki-laki', 'Perempuan') NOT NULL, -- Jenis Kelamin
-    nik VARCHAR(20) NOT NULL UNIQUE,               -- NIK (Nomor Induk Kependudukan)
-    no_hp VARCHAR(15) NOT NULL,                    -- Nomor HP Anggota
-    alamat TEXT NOT NULL,                          -- Alamat Lengkap Anggota
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Waktu Data Dimasukkan
-) ENGINE=INNODB; -- Pastikan menggunakan InnoDB
+### 🔑 Login
+![Login](./images/login.jpeg)
 
--- Buat tabel 'pinjaman'
-CREATE TABLE IF NOT EXISTS pinjaman (
-    id_pinjaman INT PRIMARY KEY,                   -- ID Pinjaman
-    id_anggota INT,                                -- ID Anggota (Harus Sama dengan Tipe di 'members')
-    jumlah INT NOT NULL,                           -- Jumlah Pinjaman
-    no_rek INT(6) NOT NULL,                        -- No Rekening (6 Digit)
-    tanggal INT NOT NULL,                          -- Tanggal Pinjaman
-    bulan INT NOT NULL,                            -- Bulan Pinjaman
-    tahun INT NOT NULL,                            -- Tahun Pinjaman
-    status_pinjaman ENUM('Disetujui', 'Ditolak', 'Menunggu', 'Lunas') NOT NULL, -- Status Pinjaman
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Waktu Data Dimasukkan
-    FOREIGN KEY (id_anggota) REFERENCES members(id_anggota) -- Hubungkan ke members.id_anggota
-        ON DELETE CASCADE                           -- Hapus otomatis jika anggota dihapus
-        ON UPDATE CASCADE
-) ENGINE=INNODB; -- Pastikan menggunakan InnoDB
+### 🖥️ Dashboard (Versi Bahasa Indonesia)
+![Dashboard](./images/dashboard.jpeg)
 
+### 🌐 Dashboard (Versi English)
+![Dashboard English](./images/dashboard%20versi%20english.jpeg)
 
+### ➕ Tambah Anggota
+![Tambah Member](./images/tambah%20member.jpeg)
 
+### 🧠 Database MariaDB (Relasi)
+![Database](./images/database.jpeg)
 
+### 🔧 Kode DBUtil.java (Koneksi Database)
+![DBUtil](./images/DButil.jpeg)
